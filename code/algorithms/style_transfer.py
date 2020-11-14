@@ -1,6 +1,7 @@
 import torch
 import torch.nn as nn
 import matplotlib.pyplot as plt
+import os
 
 import sys
 sys.path.append("..")
@@ -12,7 +13,8 @@ OPTIMIZERS = {
 }
 
 class StyleTransfer(nn.Module):
-    def __init__(self, model, content_image, style_image, layers, style_weightings, content_layer="conv4_2", content_weight=1, style_weight=1e6, optimizer="adam", lr=0.003):
+    def __init__(self, model, content_image, style_image, layers, style_weightings, content_layer="conv4_2", 
+                    content_weight=1, style_weight=1e6, optimizer="adam", lr=0.003, save_path=None):
         super(StyleTransfer, self).__init__()
 
         self._model = model
@@ -35,7 +37,9 @@ class StyleTransfer(nn.Module):
 
         self._optimizer = OPTIMIZERS[optimizer.lower()]([self._art], lr=self._lr)
 
-        self._show_every = 400
+        self._show_every = 5
+        self._save_path = save_path
+        os.mkdir(save_path)
 
     def content_loss(self, features):
         return torch.mean((features[self._content_layer] - self._content_features[self._content_layer])**2)
@@ -87,6 +91,9 @@ class StyleTransfer(nn.Module):
             self._optimizer.step()
 
             if iteration % self._show_every == 0:
+                print(f"Total Loss: {float(total_loss)}")
                 plt.imshow(convert_image(self._art))
+                if self._save_path:
+                    plt.savefig(os.path.join(self._save_path, f"img_{iteration}"))
                 plt.show()
 

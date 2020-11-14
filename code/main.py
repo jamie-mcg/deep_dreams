@@ -1,7 +1,6 @@
 import matplotlib.pyplot as plt
 from PIL import Image as img
 
-from utils import *
 from image_processing import transform, convert_image
 
 from models import VGG
@@ -38,7 +37,7 @@ if __name__ == "__main__":
         "conv5_1": 0.2
     }
 
-    model = StyleTransfer(vgg, content_image, style_image, layers, style_weights)
+    model = StyleTransfer(vgg, content_image, style_image, layers, style_weights, save_path="../images/octo_hock")
 
     model.forward()
 
