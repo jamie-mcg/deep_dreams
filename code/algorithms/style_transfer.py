@@ -37,7 +37,7 @@ class StyleTransfer(nn.Module):
 
         self._optimizer = OPTIMIZERS[optimizer.lower()]([self._art], lr=self._lr)
 
-        self._show_every = 5
+        self._show_every = 50
         self._save_path = save_path
         os.mkdir(save_path)
 
@@ -79,7 +79,7 @@ class StyleTransfer(nn.Module):
 
         return features
 
-    def forward(self, iterations=500):
+    def forward(self, iterations=5000):
         for iteration in range(iterations):
             self._optimizer.zero_grad()
 
@@ -94,6 +94,6 @@ class StyleTransfer(nn.Module):
                 print(f"Total Loss: {float(total_loss)}")
                 plt.imshow(convert_image(self._art))
                 if self._save_path:
-                    plt.savefig(os.path.join(self._save_path, f"img_{iteration}"))
-                plt.show()
+                    plt.savefig(os.path.join(self._save_path, f"img_{iteration}"), dpi=1000)
+                # plt.show()
 

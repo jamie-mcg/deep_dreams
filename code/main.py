@@ -8,8 +8,8 @@ from algorithms import StyleTransfer
 
 
 if __name__ == "__main__":
-    content_path = "../images/content/octopus.jpg"
-    style_path = "../images/style/hockney.jpg"
+    content_path = "../images/content/neil.jpg"
+    style_path = "../images/style/kadinsky.jpg"
 
     content_image = transform(img.open(content_path))
     style_image = transform(img.open(style_path))
@@ -37,7 +37,7 @@ if __name__ == "__main__":
         "conv5_1": 0.2
     }
 
-    model = StyleTransfer(vgg, content_image, style_image, layers, style_weights, save_path="../images/octo_hock")
+    model = StyleTransfer(vgg, content_image, style_image, layers, style_weights, save_path="../images/kadineil")
 
     model.forward()
 
