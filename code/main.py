@@ -14,10 +14,6 @@ if __name__ == "__main__":
     content_image = transform(img.open(content_path))
     style_image = transform(img.open(style_path))
 
-    # fig, ax = plt.subplots(1, 1)
-    # ax.imshow(convert_image(content_image))
-    # plt.show()
-
     vgg = VGG()
 
     layers = {
