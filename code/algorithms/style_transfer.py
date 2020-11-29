@@ -13,6 +13,17 @@ OPTIMIZERS = {
 }
 
 class StyleTransfer(nn.Module):
+    """
+    The main style transfer object. This object takes in a content and style image and produces images via 
+    the style transfer procedure outlined in Gatys, LA, et. al. (2016).
+
+    - content_loss(): 
+    - gram_matrix():
+    - style_loss_total():
+    - aggregate_loss():
+    - features():
+    - forward():
+    """
     def __init__(self, model, content_image, style_image, layers, style_weightings, content_layer="conv4_2", 
                     content_weight=1, style_weight=1e6, optimizer="adam", lr=0.003, save_path=None):
         super(StyleTransfer, self).__init__()
@@ -68,7 +79,6 @@ class StyleTransfer(nn.Module):
 
     def aggregate_loss(self, features):
         return self._content_weight * self.content_loss(features) + self._style_weight * self.style_loss_total(features)
-
 
     def features(self, image):
         features = {}
