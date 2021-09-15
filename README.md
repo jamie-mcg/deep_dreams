@@ -1,7 +1,7 @@
 # Can Machines Dream?
 A fun repo which can be used to create deep dream artwork!
 
-![kadinsky neil](https://github.com/jamie-mcg/deep_dreams/blob/main/images/final/kadineil.png)
+![kadinsky neil](https://github.com/jamie-mcg/deep_dreams/blob/main/images/final/kadineil_final.png)
 ![starry night apollo 11](https://github.com/jamie-mcg/deep_dreams/blob/main/images/starry_moon/starry_moon_final.png)
 
 
